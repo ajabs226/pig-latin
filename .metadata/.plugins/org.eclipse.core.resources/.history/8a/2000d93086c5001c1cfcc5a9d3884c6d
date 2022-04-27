@@ -1,0 +1,123 @@
+
+   
+
+public class PigLatin {
+	// CHANGES MADE:
+	// 1. comparison "s == vs" does not work with Strings
+	// 2. added "w" to the end. "ay" -> "way"
+	// 3. needs to go only to vowelIndex, not vowelIndex + 1
+	// 4. needs to go only to vowelIndex, not vowelIndex - 1
+	// 5. removed unnecessary console output
+	// 6. made capable of multiple sentences by using split and a for loop
+	// 7. Changed variable for for-loop to match that of standard for nested
+	// for-loops
+	// 8. changed class name to reflect Java standards
+
+	public static void main(String[] args) {
+		String applePiggy = toPigLatin("apple");
+		System.out.println(writeExpectedStatement("appleway", applePiggy));
+
+		String heckPiggy = toPigLatin("heck");
+		System.out.println(writeExpectedStatement("eckhay", heckPiggy));
+
+		String strongPiggy = toPigLatin("strong");
+		System.out.println(writeExpectedStatement("ongstray", strongPiggy));
+
+		String emailPiggy = toPigLatin("tommy@email.com");
+		System.out.println(writeExpectedStatement("tommy@email.com", emailPiggy));
+
+		String aardvarkPiggy = toPigLatin("aardvark");
+		System.out.println(writeExpectedStatement("aardvarkway", aardvarkPiggy));
+
+		String tommyPiggy = toPigLatin("Tommy");
+		System.out.println(writeExpectedStatement("ommytay", tommyPiggy));
+
+		String gymPiggy = toPigLatin("gym");
+		System.out.println(writeExpectedStatement("gym", gymPiggy));
+
+		String longPiggy = toPigLatin("apple joy gym tommy@email.com strong");
+		System.out.println(writeExpectedStatement("appleway oyjay gym tommy@email.com ongstray", longPiggy));
+	}
+
+	private static String writeExpectedStatement(String expected, String actual) {
+		String translatedProperly = expected.equals(actual) ? "Translation successful."
+				: "Translator failed. Please try again.";
+		System.out.println(translatedProperly);
+		return "\tExpected: " + expected + "\n\tActual: " + actual;
+	}
+
+	public static Boolean isVowel(char c) {
+		char[] vowels = { 'a', 'e', 'i', 'o', 'u' };
+		String s = String.valueOf(c);
+		String vs = new String(vowels);
+		return vs.contains(s); // FIXED: #1 comparison "s == vs" does not work with Strings
+	}
+
+	public static String toPigLatin(String word) {
+		String completedOutput = "";
+		// FIXED: #6 made capable of multiple sentences by using split and a for loop
+		String[] allWordsInSentence = word.split(" ");
+		for (int i = 0; i < allWordsInSentence.length; i++) {
+			String output = translatorByWord(allWordsInSentence[i]);
+			if (i != allWordsInSentence.length - 1) { // will correct spacing of original sentence
+				completedOutput += output + " ";
+			} else {
+				completedOutput += output;
+			}
+		}
+
+		return completedOutput;
+	}
+
+	public static String translatorByWord(String word) {
+		String output = "placeholder";
+		char[] specialChars = { '@', '.', '-', '$', '^', '&' };
+		word = word.toLowerCase();
+		for (char c : specialChars) {
+			for (char w : word.toCharArray()) {
+				if (w == c) {
+					// System.out.println("That word has special characters, we will return it as
+					// is");
+					// FIXED: #5 removed unnecessary console output
+					return word;
+				}
+			}
+
+		}
+
+		Boolean noVowels = true;
+		for (char letter : word.toCharArray()) {
+			if (isVowel(letter)) {
+				noVowels = false;
+			}
+		}
+
+		if (noVowels) {
+			return word;
+		}
+
+		char firstLetter = word.toCharArray()[0];
+
+		if (isVowel(firstLetter) == true) {
+			output = word + "way"; // FIXED: #2 added "w" to the end. "ay" -> "way"
+		} else {
+			int vowelIndex = -1;
+			// Handle going through all the consonants
+			for (int j = 0; j <= word.length(); j++) { // FIXED: #7 Changed variable for for-loop to match that of
+														// standard for nested for-loops
+				if (isVowel(word.toCharArray()[j]) == true) {
+					vowelIndex = j;
+					break;
+				}
+			}
+
+			String sub = word.substring(vowelIndex); // FIXED #3 needs to go only to vowelIndex, not vowelIndex + 1
+			String postFix = word.substring(0, vowelIndex); // FIXED #4 needs to go only to vowelIndex, not
+															// vowelIndex - 1
+
+			output = sub + postFix + "ay";
+		}
+		return output;
+	}
+}
+

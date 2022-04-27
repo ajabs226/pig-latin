@@ -1,0 +1,19 @@
+
+public class PigLatin {
+
+	public static void main(String[] args) {
+
+	}
+
+	public static String translateWord(String pigLatinInput) {
+		pigLatinInput = pigLatinInput.toLowerCase();	
+		
+		if (pigLatinInput.startsWith(pigLatinInput, 'a')) {
+			pigLatinInput.concat("way");
+		}
+		System.out.println(pigLatinInput);
+		return pigLatinInput;
+	}
+	
+	
+}

@@ -1,0 +1,19 @@
+
+public class PigLatin {
+
+	public static void main(String[] args) {
+
+	}
+
+	public static String translate(String pigLatin) {
+		String english = "apple";
+		
+		if (english.startsWith("a")) {
+			pigLatin += "way";
+		}
+		System.out.println(pigLatin);
+		return pigLatin;
+	}
+	
+	
+}

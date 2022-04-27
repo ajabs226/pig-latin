@@ -1,0 +1,46 @@
+
+public class PigLatin {
+
+	public static void main(String[] args) {
+
+	}
+
+	public static String translate(String pigLatin) {
+		pigLatin = pigLatin.toLowerCase();	
+		String addWay = "way";
+		String word = "";
+	
+		if (pigLatin.startsWith(isVowel(pigLatin))) {
+			word = pigLatin.concat(addWay);
+		} 
+		/*
+		 * else if (pigLatin.startsWith(isConst(pigLatin))) { word =
+		 * pigLatin.replaceFirst(pigLatin, addWay);
+		 * 
+		 * 
+		 * }
+		 */
+		System.out.println(word);
+		return word;
+		
+		
+	}
+	
+	public static String isVowel(String startVowel) {
+		char[] vowels = {'a', 'e', 'i', 'o' , 'u'};
+		startVowel = String.valueOf(vowels);
+		
+		return startVowel;
+		
+	}
+	
+	public static String isConst(String startConst) {
+		char[] consts = {'b', 'c', 'd', 'f', 'g', 'h', 'j',	'k',
+				'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'};
+		startConst = String.valueOf(consts);
+		
+		return startConst;
+	}
+	
+	
+}

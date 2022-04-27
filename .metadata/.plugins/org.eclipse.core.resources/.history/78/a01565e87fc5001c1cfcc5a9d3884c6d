@@ -1,0 +1,20 @@
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class PigLatinTest {
+
+	@Test
+	void testPigLatingVowel() {
+		//ARRANGE
+		String pigLatin = "elephant";
+		
+		//ACT
+		String expected = pigLatin + "way";
+		String actual = PigLatin.translate(pigLatin);
+		
+		//ASSERT
+		assertEquals(expected, actual);
+	}	
+
+}

@@ -1,0 +1,18 @@
+
+public class PigLatin {
+
+	public static void main(String[] args) {
+
+	}
+
+	public static String translate(String pigLatin) {
+				
+		if (pigLatin.startsWith("a")) {
+			pigLatin.concat("way");
+		}
+		System.out.println(pigLatin);
+		return pigLatin;
+	}
+	
+	
+}

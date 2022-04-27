@@ -1,0 +1,86 @@
+
+
+public class PigLatin {
+
+	public static void main(String[] args) {
+
+	}
+
+
+	public static Boolean isVowel(char c) {
+		char[] vowels = { 'a', 'e', 'i', 'o', 'u' };
+		String s = String.valueOf(c);
+		String vs = new String(vowels);
+		return vs.contains(s); 
+	}
+
+	public static String toPigLatin(String word) {
+		String completedOutput = "";
+
+		String[] allWordsInSentence = word.split(" ");
+
+		for (int i = 0; i < allWordsInSentence.length; i++) {
+		
+			String output = translate(allWordsInSentence[i]);
+			
+			if (i != allWordsInSentence.length - 1) { 
+				completedOutput += output + " ";
+			
+			} else {
+				completedOutput += output;
+			}
+		}
+
+		return completedOutput;
+	}
+
+	public static String translate(String word) {
+		String output = "placeholder";
+		char[] specialChars = { '@', '.', '-', '$', '^', '&' };
+		word = word.toLowerCase();
+		for (char c : specialChars) {
+			for (char w : word.toCharArray()) {
+				if (w == c) {
+
+					return word;
+				}
+			}
+
+		}
+
+		Boolean noVowels = true;
+		for (char letter : word.toCharArray()) {
+			if (isVowel(letter)) {
+				noVowels = false;
+			}
+		}
+
+		if (noVowels) {
+			return word;
+		}
+
+		char firstLetter = word.toCharArray()[0];
+
+		if (isVowel(firstLetter) == true) {
+			output = word + "way"; 
+		} else {
+			int vowelIndex = -1;
+			
+			for (int j = 0; j <= word.length(); j++) { 
+														
+				if (isVowel(word.toCharArray()[j]) == true) {
+					vowelIndex = j;
+					break;
+				}
+			}
+
+			String sub = word.substring(vowelIndex); 
+			String postFix = word.substring(0, vowelIndex); 
+															
+
+			output = sub + postFix + "ay";
+		}
+		return output;
+	}
+}
+

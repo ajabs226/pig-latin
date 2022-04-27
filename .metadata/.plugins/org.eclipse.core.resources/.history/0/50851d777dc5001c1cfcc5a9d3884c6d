@@ -1,0 +1,23 @@
+
+public class PigLatin {
+
+	public static void main(String[] args) {
+
+	}
+
+	public static String translate(String pigLatin) {
+		pigLatin = pigLatin.toLowerCase();	
+		String addWay = "way";
+		String word = null;
+	
+		if (pigLatin.startsWith("a" + "e" + "i" + "o" + "u")) {
+			word = pigLatin.concat(addWay);
+		}
+		System.out.println(word);
+		return word;
+		
+		
+	}
+	
+	
+}
